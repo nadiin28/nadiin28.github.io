@@ -164,14 +164,14 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   const image = [
-    '/img/event/photo.png',
-    '/img/event/MafiaParty.jpg',
-    '/img/event/Party.jpg',
-    '/img/event/onTheBeatch.jpg',
-    '/img/event/homeSequrity.jpg',
-    '/img/event/network.jpg',
-    '/img/event/System.jpg',
-    '/img/event/Client.jpg',
+    'img/event/photo.png',
+    'img/event/MafiaParty.jpg',
+    'img/event/Party.jpg',
+    'img/event/onTheBeatch.jpg',
+    'img/event/homeSequrity.jpg',
+    'img/event/network.jpg',
+    'img/event/System.jpg',
+    'img/event/Client.jpg',
   ];
 
   const items = document.querySelectorAll('.accordion');
