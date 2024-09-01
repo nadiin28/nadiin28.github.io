@@ -70,37 +70,28 @@ function createPoints() {
   return points;
 }
 
-document.addEventListener('mousemove', handleMouseMove);
-document.addEventListener('touchmove', handleTouchMove);
-
-function handleMouseMove(event) {
+document.addEventListener('mousemove', (event) => {
   const { clientX, clientY } = event;
-  updateTargetPosition(clientX, clientY, window.scrollX, window.scrollY);
-}
+  const scrollX = window.scrollX;
+  const scrollY = window.scrollY;
 
-function handleTouchMove(event) {
-  if (event.touches.length > 0) {
-    const touch = event.touches[0];
-    updateTargetPosition(touch.clientX, touch.clientY, window.scrollX, window.scrollY);
-  }
-}
+  //   targetX = clientX - 500 + scrollX;
+  //   targetY = clientY - 500 + scrollY;
 
-function updateTargetPosition(clientX, clientY, scrollX, scrollY) {
+  // Получаем размеры SVG
   const svg = document.querySelector('svg');
   const svgWidth = svg.clientWidth;
   const svgHeight = svg.clientHeight;
 
+  // Вычисляем центр SVG
   const svgCenterX = svgWidth / 2;
   const svgCenterY = svgHeight / 2;
 
+  // Вычисляем позицию мыши относительно центра SVG
   targetX = clientX - svgCenterX + scrollX;
   targetY = clientY - svgCenterY + scrollY;
 
-  canvasMouseOver({ clientX, clientY });
-}
-
-document.addEventListener('touchstart', (event) => {
-  handleTouchMove(event);
+  canvasMouseOver(event); // Добавляем рябь при движении мыши
 });
 
 document.querySelector('path').addEventListener('mouseover', () => {
@@ -110,14 +101,6 @@ document.querySelector('path').addEventListener('mouseover', () => {
 document.querySelector('path').addEventListener('mouseleave', () => {
   noiseStep = 0.005;
 });
-
-function canvasMouseOver(event) {
-  const x = event.clientX * canvasSettings.ratio;
-  const y = event.clientY * canvasSettings.ratio;
-  ripples.unshift(new Ripple(x, y, 2, ctx));
-}
-
-// Прочие функции и анимация остаются без изменений
 
 // Код для анимации ряби
 
